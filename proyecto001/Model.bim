@@ -76,12 +76,6 @@
         "name": "Employee",
         "columns": [
           {
-            "name": "BusinessEntityID",
-            "dataType": "int64",
-            "sourceColumn": "BusinessEntityID",
-            "sourceProviderType": "Integer"
-          },
-          {
             "name": "NationalIDNumber",
             "dataType": "string",
             "sourceColumn": "NationalIDNumber",
@@ -522,30 +516,6 @@
       }
     ],
     "relationships": [
-      {
-        "name": "73e53bf0-e81f-4776-a6f0-f0908a86c036",
-        "fromTable": "EmployeeDepartmentHistory",
-        "fromColumn": "BusinessEntityID",
-        "toTable": "Employee",
-        "toColumn": "BusinessEntityID",
-        "crossFilteringBehavior": "bothDirections"
-      },
-      {
-        "name": "7f0e2c2a-8e89-4f38-847f-04e5003aacc3",
-        "fromTable": "JobCandidate",
-        "fromColumn": "BusinessEntityID",
-        "toTable": "Employee",
-        "toColumn": "BusinessEntityID",
-        "crossFilteringBehavior": "bothDirections"
-      },
-      {
-        "name": "7c6c5a72-3e3b-409d-a2bb-220847cc4357",
-        "fromTable": "EmployeePayHistory",
-        "fromColumn": "BusinessEntityID",
-        "toTable": "Employee",
-        "toColumn": "BusinessEntityID",
-        "crossFilteringBehavior": "bothDirections"
-      },
       {
         "name": "36027c81-6124-4bb2-9916-c59d5f91ff9f",
         "fromTable": "EmployeeDepartmentHistory",
