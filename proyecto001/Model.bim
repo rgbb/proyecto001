@@ -76,12 +76,6 @@
         "name": "Employee",
         "columns": [
           {
-            "name": "BusinessEntityID",
-            "dataType": "int64",
-            "sourceColumn": "BusinessEntityID",
-            "sourceProviderType": "Integer"
-          },
-          {
             "name": "NationalIDNumber",
             "dataType": "string",
             "sourceColumn": "NationalIDNumber",
@@ -182,6 +176,12 @@
             "dataType": "int64",
             "isDataTypeInferred": true,
             "expression": "DATEDIFF(Employee[BirthDate],TODAY(),YEAR)"
+          },
+          {
+            "name": "BusinessEntityID",
+            "dataType": "int64",
+            "sourceColumn": "BusinessEntityID",
+            "sourceProviderType": "Integer"
           }
         ],
         "partitions": [
@@ -523,6 +523,14 @@
     ],
     "relationships": [
       {
+        "name": "6142f63f-ddda-4510-9ce3-0a1a6ed027e4",
+        "fromTable": "EmployeeDepartmentHistory",
+        "fromColumn": "DepartmentID",
+        "toTable": "Department",
+        "toColumn": "DepartmentID",
+        "crossFilteringBehavior": "bothDirections"
+      },
+      {
         "name": "73e53bf0-e81f-4776-a6f0-f0908a86c036",
         "fromTable": "EmployeeDepartmentHistory",
         "fromColumn": "BusinessEntityID",
@@ -547,20 +555,11 @@
         "crossFilteringBehavior": "bothDirections"
       },
       {
-        "name": "36027c81-6124-4bb2-9916-c59d5f91ff9f",
+        "name": "36a3f403-7c37-412a-a3ce-bcca287b145c",
         "fromTable": "EmployeeDepartmentHistory",
-        "fromColumn": "ShiftID",
+        "fromColumn": "StartDate",
         "toTable": "Shift",
-        "toColumn": "ShiftID",
-        "crossFilteringBehavior": "bothDirections"
-      },
-      {
-        "name": "6142f63f-ddda-4510-9ce3-0a1a6ed027e4",
-        "fromTable": "EmployeeDepartmentHistory",
-        "fromColumn": "DepartmentID",
-        "toTable": "Department",
-        "toColumn": "DepartmentID",
-        "crossFilteringBehavior": "bothDirections"
+        "toColumn": "StartTime"
       }
     ],
     "annotations": [
