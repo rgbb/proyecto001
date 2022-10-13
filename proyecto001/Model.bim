@@ -3,6 +3,566 @@
   "compatibilityLevel": 1200,
   "model": {
     "culture": "es-ES",
+    "dataSources": [
+      {
+        "name": "SqlServer localhost AdventureWorks2019",
+        "connectionString": "Provider=SQLNCLI11;Data Source=localhost;Initial Catalog=AdventureWorks2019;Integrated Security=SSPI;Persist Security Info=false",
+        "impersonationMode": "impersonateServiceAccount",
+        "annotations": [
+          {
+            "name": "ConnectionEditUISource",
+            "value": "SqlServer"
+          }
+        ]
+      }
+    ],
+    "tables": [
+      {
+        "name": "Department",
+        "columns": [
+          {
+            "name": "DepartmentID",
+            "dataType": "int64",
+            "sourceColumn": "DepartmentID",
+            "sourceProviderType": "SmallInt"
+          },
+          {
+            "name": "Name",
+            "dataType": "string",
+            "sourceColumn": "Name",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "GroupName",
+            "dataType": "string",
+            "sourceColumn": "GroupName",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "ModifiedDate",
+            "dataType": "dateTime",
+            "sourceColumn": "ModifiedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Department",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " SELECT [HumanResources].[Department].* FROM [HumanResources].[Department] ",
+              "dataSource": "SqlServer localhost AdventureWorks2019"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [HumanResources].[Department].* FROM [HumanResources].[Department] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "Department"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "HumanResources"
+          }
+        ]
+      },
+      {
+        "name": "Employee",
+        "columns": [
+          {
+            "name": "BusinessEntityID",
+            "dataType": "int64",
+            "sourceColumn": "BusinessEntityID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "NationalIDNumber",
+            "dataType": "string",
+            "sourceColumn": "NationalIDNumber",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "LoginID",
+            "dataType": "string",
+            "sourceColumn": "LoginID",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "OrganizationNode",
+            "dataType": "string",
+            "sourceColumn": "OrganizationNode",
+            "sourceProviderType": "132"
+          },
+          {
+            "name": "OrganizationLevel",
+            "dataType": "int64",
+            "sourceColumn": "OrganizationLevel",
+            "sourceProviderType": "SmallInt"
+          },
+          {
+            "name": "JobTitle",
+            "dataType": "string",
+            "sourceColumn": "JobTitle",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "BirthDate",
+            "dataType": "dateTime",
+            "sourceColumn": "BirthDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBDate"
+          },
+          {
+            "name": "MaritalStatus",
+            "dataType": "string",
+            "sourceColumn": "MaritalStatus",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "Gender",
+            "dataType": "string",
+            "sourceColumn": "Gender",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "HireDate",
+            "dataType": "dateTime",
+            "sourceColumn": "HireDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBDate"
+          },
+          {
+            "name": "SalariedFlag",
+            "dataType": "boolean",
+            "sourceColumn": "SalariedFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "VacationHours",
+            "dataType": "int64",
+            "sourceColumn": "VacationHours",
+            "sourceProviderType": "SmallInt"
+          },
+          {
+            "name": "SickLeaveHours",
+            "dataType": "int64",
+            "sourceColumn": "SickLeaveHours",
+            "sourceProviderType": "SmallInt"
+          },
+          {
+            "name": "CurrentFlag",
+            "dataType": "boolean",
+            "sourceColumn": "CurrentFlag",
+            "formatString": "\"TRUE\";\"TRUE\";\"FALSE\"",
+            "sourceProviderType": "Boolean"
+          },
+          {
+            "name": "rowguid",
+            "dataType": "string",
+            "sourceColumn": "rowguid",
+            "sourceProviderType": "Guid"
+          },
+          {
+            "name": "ModifiedDate",
+            "dataType": "dateTime",
+            "sourceColumn": "ModifiedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "type": "calculated",
+            "name": "age",
+            "dataType": "int64",
+            "isDataTypeInferred": true,
+            "expression": "DATEDIFF(Employee[BirthDate],TODAY(),YEAR)"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Employee",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " SELECT [HumanResources].[Employee].* FROM [HumanResources].[Employee] ",
+              "dataSource": "SqlServer localhost AdventureWorks2019"
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "edad_promedio",
+            "expression": "AVERAGE(Employee[age])"
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [HumanResources].[Employee].* FROM [HumanResources].[Employee] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "Employee"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "HumanResources"
+          }
+        ]
+      },
+      {
+        "name": "EmployeeDepartmentHistory",
+        "columns": [
+          {
+            "name": "BusinessEntityID",
+            "dataType": "int64",
+            "sourceColumn": "BusinessEntityID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "DepartmentID",
+            "dataType": "int64",
+            "sourceColumn": "DepartmentID",
+            "sourceProviderType": "SmallInt"
+          },
+          {
+            "name": "ShiftID",
+            "dataType": "int64",
+            "sourceColumn": "ShiftID",
+            "sourceProviderType": "UnsignedTinyInt"
+          },
+          {
+            "name": "StartDate",
+            "dataType": "dateTime",
+            "sourceColumn": "StartDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBDate"
+          },
+          {
+            "name": "EndDate",
+            "dataType": "dateTime",
+            "sourceColumn": "EndDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBDate"
+          },
+          {
+            "name": "ModifiedDate",
+            "dataType": "dateTime",
+            "sourceColumn": "ModifiedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "type": "calculated",
+            "name": "Antiguedad",
+            "dataType": "int64",
+            "isDataTypeInferred": true,
+            "expression": [
+              " var fin = IF(EmployeeDepartmentHistory[EndDate]=BLANK(),TODAY(),EmployeeDepartmentHistory[EndDate])",
+              "return",
+              "DATEDIFF(EmployeeDepartmentHistory[StartDate],fin,YEAR)"
+            ]
+          }
+        ],
+        "partitions": [
+          {
+            "name": "EmployeeDepartmentHistory",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " SELECT [HumanResources].[EmployeeDepartmentHistory].* FROM [HumanResources].[EmployeeDepartmentHistory] ",
+              "dataSource": "SqlServer localhost AdventureWorks2019"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [HumanResources].[EmployeeDepartmentHistory].* FROM [HumanResources].[EmployeeDepartmentHistory] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "EmployeeDepartmentHistory"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "HumanResources"
+          }
+        ]
+      },
+      {
+        "name": "EmployeePayHistory",
+        "columns": [
+          {
+            "name": "BusinessEntityID",
+            "dataType": "int64",
+            "sourceColumn": "BusinessEntityID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "RateChangeDate",
+            "dataType": "dateTime",
+            "sourceColumn": "RateChangeDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          },
+          {
+            "name": "Rate",
+            "dataType": "decimal",
+            "sourceColumn": "Rate",
+            "formatString": "#,0.00 \"€\";-#,0.00 \"€\";#,0.00 \"€\"",
+            "sourceProviderType": "Currency",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" Accuracy=\"2\" ThousandSeparator=\"True\"><Currency LCID=\"3082\" DisplayName=\"€ Español (España)\" Symbol=\"€\" PositivePattern=\"3\" NegativePattern=\"8\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "PayFrequency",
+            "dataType": "int64",
+            "sourceColumn": "PayFrequency",
+            "sourceProviderType": "UnsignedTinyInt"
+          },
+          {
+            "name": "ModifiedDate",
+            "dataType": "dateTime",
+            "sourceColumn": "ModifiedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "EmployeePayHistory",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " SELECT [HumanResources].[EmployeePayHistory].* FROM [HumanResources].[EmployeePayHistory] ",
+              "dataSource": "SqlServer localhost AdventureWorks2019"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [HumanResources].[EmployeePayHistory].* FROM [HumanResources].[EmployeePayHistory] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "EmployeePayHistory"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "HumanResources"
+          }
+        ]
+      },
+      {
+        "name": "JobCandidate",
+        "columns": [
+          {
+            "name": "JobCandidateID",
+            "dataType": "int64",
+            "sourceColumn": "JobCandidateID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "BusinessEntityID",
+            "dataType": "int64",
+            "sourceColumn": "BusinessEntityID",
+            "sourceProviderType": "Integer"
+          },
+          {
+            "name": "Resume",
+            "dataType": "string",
+            "sourceColumn": "Resume",
+            "sourceProviderType": "141"
+          },
+          {
+            "name": "ModifiedDate",
+            "dataType": "dateTime",
+            "sourceColumn": "ModifiedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "JobCandidate",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " SELECT [HumanResources].[JobCandidate].* FROM [HumanResources].[JobCandidate] ",
+              "dataSource": "SqlServer localhost AdventureWorks2019"
+            }
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [HumanResources].[JobCandidate].* FROM [HumanResources].[JobCandidate] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "JobCandidate"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "HumanResources"
+          }
+        ]
+      },
+      {
+        "name": "Shift",
+        "columns": [
+          {
+            "name": "ShiftID",
+            "dataType": "int64",
+            "sourceColumn": "ShiftID",
+            "sourceProviderType": "UnsignedTinyInt"
+          },
+          {
+            "name": "Name",
+            "dataType": "string",
+            "sourceColumn": "Name",
+            "sourceProviderType": "WChar"
+          },
+          {
+            "name": "StartTime",
+            "dataType": "dateTime",
+            "sourceColumn": "StartTime",
+            "formatString": "General Date",
+            "sourceProviderType": "145"
+          },
+          {
+            "name": "EndTime",
+            "dataType": "dateTime",
+            "sourceColumn": "EndTime",
+            "formatString": "General Date",
+            "sourceProviderType": "145"
+          },
+          {
+            "name": "ModifiedDate",
+            "dataType": "dateTime",
+            "sourceColumn": "ModifiedDate",
+            "formatString": "General Date",
+            "sourceProviderType": "DBTimeStamp"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Shift",
+            "dataView": "full",
+            "source": {
+              "type": "query",
+              "query": " SELECT [HumanResources].[Shift].* FROM [HumanResources].[Shift] ",
+              "dataSource": "SqlServer localhost AdventureWorks2019"
+            }
+          }
+        ],
+        "hierarchies": [
+          {
+            "name": "Jerarquía1"
+          }
+        ],
+        "annotations": [
+          {
+            "name": "_TM_ExtProp_QueryDefinition",
+            "value": " SELECT [HumanResources].[Shift].* FROM [HumanResources].[Shift] "
+          },
+          {
+            "name": "_TM_ExtProp_DbTableName",
+            "value": "Shift"
+          },
+          {
+            "name": "_TM_ExtProp_DbSchemaName",
+            "value": "HumanResources"
+          }
+        ]
+      },
+      {
+        "name": "Medidas",
+        "columns": [
+          {
+            "type": "calculatedTableColumn",
+            "name": "DepartmentID",
+            "dataType": "int64",
+            "isNameInferred": true,
+            "isDataTypeInferred": true,
+            "sourceColumn": "Department[DepartmentID]"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "CalculatedTable 1",
+            "source": {
+              "type": "calculated",
+              "expression": "DISTINCT(Department[DepartmentID])"
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "promedio_edades",
+            "expression": "AVERAGE(Employee[age])"
+          },
+          {
+            "name": "promedio_edades2",
+            "expression": "AVERAGE(Employee[age])"
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "name": "73e53bf0-e81f-4776-a6f0-f0908a86c036",
+        "fromTable": "EmployeeDepartmentHistory",
+        "fromColumn": "BusinessEntityID",
+        "toTable": "Employee",
+        "toColumn": "BusinessEntityID",
+        "crossFilteringBehavior": "bothDirections"
+      },
+      {
+        "name": "7f0e2c2a-8e89-4f38-847f-04e5003aacc3",
+        "fromTable": "JobCandidate",
+        "fromColumn": "BusinessEntityID",
+        "toTable": "Employee",
+        "toColumn": "BusinessEntityID",
+        "crossFilteringBehavior": "bothDirections"
+      },
+      {
+        "name": "7c6c5a72-3e3b-409d-a2bb-220847cc4357",
+        "fromTable": "EmployeePayHistory",
+        "fromColumn": "BusinessEntityID",
+        "toTable": "Employee",
+        "toColumn": "BusinessEntityID",
+        "crossFilteringBehavior": "bothDirections"
+      },
+      {
+        "name": "36027c81-6124-4bb2-9916-c59d5f91ff9f",
+        "fromTable": "EmployeeDepartmentHistory",
+        "fromColumn": "ShiftID",
+        "toTable": "Shift",
+        "toColumn": "ShiftID",
+        "crossFilteringBehavior": "bothDirections"
+      },
+      {
+        "name": "6142f63f-ddda-4510-9ce3-0a1a6ed027e4",
+        "fromTable": "EmployeeDepartmentHistory",
+        "fromColumn": "DepartmentID",
+        "toTable": "Department",
+        "toColumn": "DepartmentID",
+        "crossFilteringBehavior": "bothDirections"
+      }
+    ],
     "annotations": [
       {
         "name": "ClientCompatibilityLevel",
