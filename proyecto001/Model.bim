@@ -555,11 +555,12 @@
         "crossFilteringBehavior": "bothDirections"
       },
       {
-        "name": "36a3f403-7c37-412a-a3ce-bcca287b145c",
+        "name": "58026d02-33c5-4987-b093-1359df6fbd57",
         "fromTable": "EmployeeDepartmentHistory",
-        "fromColumn": "StartDate",
+        "fromColumn": "ShiftID",
         "toTable": "Shift",
-        "toColumn": "StartTime"
+        "toColumn": "ShiftID",
+        "crossFilteringBehavior": "bothDirections"
       }
     ],
     "annotations": [
